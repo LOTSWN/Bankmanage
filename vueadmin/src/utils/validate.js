@@ -16,5 +16,9 @@ export function isExternal(path) {
  */
 export function validUsername(str) {
   const valid_map = ['admin', 'editor']
-  return valid_map.indexOf(str.trim()) >= 0
+  $.post("/login",str.trim(),function(backstr){
+          if(backstr=="find") return 1;
+          else return 0;
+  });
+  // return valid_map.indexOf(str.trim()) >= 0
 }

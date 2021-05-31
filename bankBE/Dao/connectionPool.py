@@ -1,5 +1,5 @@
 from DBUtils.PooledDB import PooledDB
-import config
+from Dao import config
 
 """
 @功能：创建数据库连接池

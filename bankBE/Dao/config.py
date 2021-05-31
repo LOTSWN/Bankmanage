@@ -1,6 +1,4 @@
-# -*- coding: UTF-8 -*-
 import pymysql
-
 # 数据库信息
 DB_TEST_HOST = "127.0.0.1"
 DB_TEST_PORT = 3306

@@ -10,7 +10,6 @@
             unique-opened
             router
         >
-        <template  v-if = checknow()>
             <template v-for="item in items">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index" :key="item.index">
@@ -46,15 +45,6 @@
                     </el-menu-item>
                 </template>
             </template>
-        </template>
-
-        <template  v-else>
-            
-
-
-
-        </template> 
-
         </el-menu>
     </div>
 </template>
@@ -169,20 +159,7 @@ export default {
         collapse(){
             return this.$store.state.collapse
         }
-    },
-
-    methods: {
-        checknow: function() {
-            var res = false;
-            const role = localStorage.getItem('user_type');
-            if(role === "admin"){
-            res = true;
-            }
-            else res = false;
-            return res;
     }
-
-}    
 };
 </script>
 

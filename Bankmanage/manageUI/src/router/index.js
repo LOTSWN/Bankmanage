@@ -119,8 +119,7 @@ const routes = [
                 '../views/403.vue')
             }
         ]
-    }, 
-    {
+    }, {
         path: "/login",
         name: "Login",
         meta: {
@@ -129,18 +128,7 @@ const routes = [
         component: () => import (
         /* webpackChunkName: "login" */
         "../views/Login.vue")
-    },
-    {
-        path: "/adminlogin",
-        name: "adminLogin",
-        meta: {
-            title: '管理员登录'
-        },
-        component: () => import (
-        /* webpackChunkName: "login" */
-        "../views/adminLogin.vue")
     }
-    
 ];
 
 const router = createRouter({
@@ -150,8 +138,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     document.title = `${to.meta.title} | vue-manage-system`;
-    const role = localStorage.getItem('user_type');
-    if (!role && to.path !== '/login' && to.path !== '/adminlogin') {
+    const role = localStorage.getItem('ms_username');
+    if (!role && to.path !== '/login') {
         next('/login');
     } else if (to.meta.permission) {
         // 如果是管理员权限则可进入，这里只是简单的模拟管理员权限而已

@@ -23,9 +23,8 @@
                     </el-input>
                 </el-form-item>
                 <div class="change-btn">
-                    <el-button type="primary" @click="changeForm()">切换到管理员</el-button>
+                    <el-button type="primary" @click="changeForm()">切换到普通用户</el-button>
                 </div>
-
                 <div class="login-btn">
                     <el-button type="primary" @click="submitForm()">登录</el-button>
                 </div>
@@ -46,7 +45,7 @@ export default {
             },
             rules: {
                 username: [
-                    { required: true, message: "请输入用户名", trigger: "blur" }
+                    { required: true, message: "请输入管理员用户名", trigger: "blur" }
                 ],
                 password: [
                     { required: true, message: "请输入密码", trigger: "blur" }
@@ -70,7 +69,7 @@ export default {
                   })
                 }
                 $.ajax({
-                  url: 'http://127.0.0.1:9529/login',
+                  url: 'http://127.0.0.1:9529/adminlogin',
                   type: 'POST',
                   data: data,
                   async: false, //设置ajax为同步请求
@@ -90,7 +89,7 @@ export default {
 
                 if (valid) {
                     this.$message.success("登录成功");
-                    localStorage.setItem("user_type", "normal");
+                    localStorage.setItem("user_type", "admin");
                     this.$router.push("/");
                 } else {
                     this.$message.error("登陆错误");
@@ -99,10 +98,11 @@ export default {
 
 
             });
-        },
+           
+        }, 
         changeForm(){
             this.$message.success("切换成功");
-            this.$router.push("/adminlogin");
+            this.$router.push("/login");
         }
     }
 };
@@ -138,7 +138,7 @@ export default {
     padding: 30px 30px;
 }
 .login-btn {
-    text-align: center;
+    text-align: right;
 }
 .login-btn button {
     width: 100%;

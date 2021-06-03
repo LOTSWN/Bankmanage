@@ -22,10 +22,6 @@
                         </template>
                     </el-input>
                 </el-form-item>
-                <div class="change-btn">
-                    <el-button type="primary" @click="changeForm()">切换到管理员</el-button>
-                </div>
-
                 <div class="login-btn">
                     <el-button type="primary" @click="submitForm()">登录</el-button>
                 </div>
@@ -90,7 +86,7 @@ export default {
 
                 if (valid) {
                     this.$message.success("登录成功");
-                    localStorage.setItem("user_type", "normal");
+                    localStorage.setItem("ms_username", this.param.username);
                     this.$router.push("/");
                 } else {
                     this.$message.error("登陆错误");
@@ -99,10 +95,6 @@ export default {
 
 
             });
-        },
-        changeForm(){
-            this.$message.success("切换成功");
-            this.$router.push("/adminlogin");
         }
     }
 };
@@ -145,18 +137,6 @@ export default {
     height: 36px;
     margin-bottom: 10px;
 }
-
-.change-btn {
-    text-align: left;
-}
-
-.change-btn button {
-    width: 100%;
-    height: 36px;
-    margin-bottom: 10px;
-}
-
-
 .login-tips {
     font-size: 12px;
     line-height: 30px;

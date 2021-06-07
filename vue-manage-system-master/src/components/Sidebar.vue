@@ -68,41 +68,27 @@ export default {
                 {
                     icon: "el-icon-lx-home",
                     index: "dashboard",
-                    title: "系统首页"
+                    title: "管理员信息"
                 },
                 {
                     icon: "el-icon-lx-cascades",
                     index: "table",
-                    title: "基础表格"
+                    title: "用户创建"
                 },
                 {
                     icon: "el-icon-lx-copy",
                     index: "tabs",
-                    title: "tab选项卡"
+                    title: "储蓄账户创建"
                 },
                 {
                     icon: "el-icon-lx-calendar",
                     index: "3",
-                    title: "表单相关",
+                    title: "储蓄账户管理",
                     subs: [
                         {
                             index: "form",
                             title: "基本表单"
                         },
-                        //         {
-                        //             index: "3-2",
-                        //             title: "三级菜单",
-                        //             subs: [
-                        //                 {
-                        //                     index: "editor",
-                        //                     title: "富文本编辑器"
-                        //                 },
-                        //                 {
-                        //                     index: "markdown",
-                        //                     title: "markdown编辑器"
-                        //                 }
-                        //             ]
-                        //         },
                         {
                             index: "upload",
                             title: "文件上传"
@@ -112,53 +98,38 @@ export default {
                 {
                     icon: "el-icon-lx-emoji",
                     index: "icon",
-                    title: "自定义图标"
+                    title: "贷款申请"
                 },
                 {
                     icon: "el-icon-pie-chart",
                     index: "charts",
-                    title: "schart图表"
+                    title: "用户信息查询"
                 },
                 // {
-                //     icon: "el-icon-rank",
-                //     index: "6",
-                //     title: "拖拽组件",
-                //     subs: [
-                //         {
-                //             index: "drag",
-                //             title: "拖拽列表"
-                //         },
-                //         {
-                //             index: "dialog",
-                //             title: "拖拽弹框"
-                //         }
-                //     ]
+                //     icon: "el-icon-lx-global",
+                //     index: "i18n",
+                //     title: "国际化功能"
                 // },
-                {
-                    icon: "el-icon-lx-global",
-                    index: "i18n",
-                    title: "国际化功能"
-                },
                 {
                     icon: "el-icon-lx-warn",
                     index: "7",
-                    title: "错误处理",
+                    title: "用户账户查询",
                     subs: [
                         {
                             index: "permission",
-                            title: "权限测试"
+                            title: "贷款账户查询"
                         },
                         {
                             index: "404",
-                            title: "404页面"
+                            title: "储蓄账户查询"
                         }
                     ]
-                },
-                {
-                    icon: "el-icon-lx-redpacket_fill",
-                    index: "/donate",
-                    title: "支持作者"
                 }
+                // {
+                //     icon: "el-icon-lx-redpacket_fill",
+                //     index: "/donate",
+                //     title: "支持作者"
+                // }
             ]
         };
     },
@@ -175,7 +146,7 @@ export default {
         checknow: function() {
             var res = false;
             const role = localStorage.getItem('user_type');
-            if(role === "admin"){
+            if(role === "normal"){
             res = true;
             }
             else res = false;

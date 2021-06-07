@@ -33,9 +33,9 @@
                     </span>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
+                            <!-- <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
                                 <el-dropdown-item>项目仓库</el-dropdown-item>
-                            </a>
+                            </a> -->
                             <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
@@ -66,7 +66,7 @@ export default {
         // 用户名下拉菜单选择事件
         handleCommand(command) {
             if (command == "loginout") {
-                localStorage.removeItem("ms_username");
+                localStorage.removeItem("user_type");
                 this.$router.push("/login");
             }
         },

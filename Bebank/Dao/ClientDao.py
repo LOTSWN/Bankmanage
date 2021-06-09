@@ -1,8 +1,9 @@
-from Dao import connectionPool
+from Dao.connectionPool import connectionPool
 
 class ClientDao(object):
+
     def __init__(self):
-        self.ac=connectionPool.get_my_connection()
+        self.ac=connectionPool()
         (self.cur, self.con) = self.ac.getconn() #con：连接；cur：连接的对象
 
     def findclientByID(self,theId):     #根据ID查找单个客户

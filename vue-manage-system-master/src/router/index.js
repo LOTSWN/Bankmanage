@@ -4,22 +4,50 @@ import Home from "../views/Home.vue";
 const routes = [
     {
         path: '/',
-        redirect: '/dashboard'
+        redirect: '/home'
     }, {
         path: "/",
         name: "Home",
         component: Home,
         children: [
             {
-                path: "/dashboard",
-                name: "dashboard",
+                path: 'home',
+                name: "home",
                 meta: {
-                    title: '系统首页'
+                    title: '主页'
+                },
+                component: () => import (
+                /* webpackChunkName: "adminInfo" */
+                "../views/adminInfo.vue")
+            }, 
+            {
+                path: "/admininfo",
+                name: "admininfo",
+                meta: {
+                    title: '管理员信息'
                 },
                 component: () => import (
                 /* webpackChunkName: "dashboard" */
-                "../views/Dashboard.vue")
+                "../views/adminInfo.vue")
             }, {
+                path: "/newclient",
+                name: "newclient",
+                meta: {
+                    title: '用户创建'
+                },
+                component: () => import (
+                /* webpackChunkName: "table" */
+                "../views/newClient.vue")
+            },{
+                path: "/savenote",
+                name: "savenote",
+                meta: {
+                    title: '储蓄账户创建'
+                },
+                component: () => import (
+                /* webpackChunkName: "table" */
+                "../views/savenote.vue")
+            },{
                 path: "/table",
                 name: "basetable",
                 meta: {

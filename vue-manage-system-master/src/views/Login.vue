@@ -91,6 +91,7 @@ export default {
                 if (valid) {
                     this.$message.success("登录成功");
                     localStorage.setItem("user_type", "normal");
+                    localStorage.setItem("user_id", this.param.username);
                     this.$router.push("/");
                 } else {
                     this.$message.error("登陆错误");

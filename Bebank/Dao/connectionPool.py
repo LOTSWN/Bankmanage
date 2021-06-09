@@ -55,10 +55,9 @@ class connectionPool(object):
         cursor = conn.cursor()
         return cursor, conn
 
-
-# 获取连接池,实例化
-def get_my_connection():
-    return connectionPool()
+    # 获取连接池,实例化
+    # def get_my_connection():
+    #     return connectionPool()
 
 if __name__=="__main__":
     ac=connectionPool()

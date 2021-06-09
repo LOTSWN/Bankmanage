@@ -67,17 +67,17 @@ export default {
             items: [
                 {
                     icon: "el-icon-lx-home",
-                    index: "dashboard",
+                    index: "admininfo",
                     title: "管理员信息"
                 },
                 {
                     icon: "el-icon-lx-cascades",
-                    index: "table",
+                    index: "newclient",
                     title: "用户创建"
                 },
                 {
                     icon: "el-icon-lx-copy",
-                    index: "tabs",
+                    index: "savenote",
                     title: "储蓄账户创建"
                 },
                 {
@@ -125,11 +125,6 @@ export default {
                         }
                     ]
                 }
-                // {
-                //     icon: "el-icon-lx-redpacket_fill",
-                //     index: "/donate",
-                //     title: "支持作者"
-                // }
             ]
         };
     },
@@ -146,7 +141,7 @@ export default {
         checknow: function() {
             var res = false;
             const role = localStorage.getItem('user_type');
-            if(role === "normal"){
+            if(role === "admin"){
             res = true;
             }
             else res = false;

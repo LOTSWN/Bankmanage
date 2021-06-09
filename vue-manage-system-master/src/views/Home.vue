@@ -22,6 +22,7 @@ import vHeader from "../components/Header";
 import vSidebar from "../components/Sidebar";
 import vTags from "../components/Tags.vue";
 export default {
+    name:"home",
     components: {
         vHeader,
         vSidebar,

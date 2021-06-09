@@ -68,18 +68,25 @@ export default {
                     'password': this.param.password
                   })
                 }
+                var msg
                 $.ajax({
                   url: 'http://127.0.0.1:9529/adminlogin',
                   type: 'POST',
                   data: data,
                   async: false, //设置ajax为同步请求
                   dataType: 'text',
-                  success: function(res) {
-                    if (res === 'find'){
+                  success: function(res) {                      
+                    if (res === 'success'){
                         valid = true
+                        msg = '登陆成功'
                     } 
-                    else {
+                    else if (res === 'account lose' ){
                         valid = false
+                        msg = '账号错误'
+                    }
+                    else if (res === 'wrong password' ){
+                        valid = false
+                        msg = '密码错误'
                     }
                   },
                   error: function() {
@@ -88,11 +95,12 @@ export default {
                 })
 
                 if (valid) {
-                    this.$message.success("登录成功");
+                    this.$message.success(msg);
                     localStorage.setItem("user_type", "admin");
-                    this.$router.push("/");
+                    localStorage.setItem("user_id", this.param.username);
+                    this.$router.push("/admininfo");
                 } else {
-                    this.$message.error("登陆错误");
+                    this.$message.error(msg);
                     return false;
                 }
 

@@ -49,7 +49,7 @@ export default {
     data() {
         return {
             fullscreen: false,
-            name: "linxin",
+            name: "lotswn",
             message: 2
         };
     },
@@ -67,6 +67,7 @@ export default {
         handleCommand(command) {
             if (command == "loginout") {
                 localStorage.removeItem("user_type");
+                localStorage.removeItem("user_id");
                 this.$router.push("/login");
             }
         },

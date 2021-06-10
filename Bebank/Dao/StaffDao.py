@@ -1,9 +1,9 @@
-from Dao.connectionPool import connectionPool
+from Dao import connectionPool
 
 
 class StaffDao(object):
     def __init__(self):
-        self.ac=connectionPool()
+        self.ac = connectionPool.get_my_connection()
         (self.cur, self.con) = self.ac.getconn()  # con：连接；cur：连接的对象
 
     def findstaffByID(self, theId):  # 根据ID查找单个客户

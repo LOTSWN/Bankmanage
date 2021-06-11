@@ -115,13 +115,17 @@ export default {
           var year = date.getFullYear();
           var month = date.getMonth() + 1;
           var strDate = date.getDate();
+          var hours = date.getHours();
+          var minutes = date.getMinutes();
+          var seconds = date.getSeconds();
           if (month >= 1 && month <= 9) {
             month = "0" + month;
           }
           if (strDate >= 0 && strDate <= 9) {
              strDate = "0" + strDate;
           }
-           var currentdate = year + seperator1 + month + seperator1 + strDate;
+           var currentdate = year + seperator1 + month + seperator1 + strDate + " " + hours + ":" + minutes + ":" + seconds ;
+           console.log(currentdate);
            return currentdate;
      },
         onSubmit() {
@@ -137,27 +141,30 @@ export default {
                 "age":this.form.age,
            })
           }
-
-
+          var msg
           $.ajax({
           url: 'http://127.0.0.1:9529/newclient',
           type: 'POST',
           data: data,
           async: false, //设置ajax为同步请求
           dataType: 'text',
-          success: function(res) {   
+          success: function(res) {
             console.log(res)
-            this.$message.success('提交成功！');
+            if (res == "insert success"){
+              msg == '提交成功'
+            }
+            else if(res == "insert error"){
+              msg == '提交失败'
+            }
+            else if(res == "ID has been used")
+              msg == 'ID 已被占用'
            },
           error: function() {
-            this.$message.success('出现错误！');
+            msg = 'something wrong'
           }
+          })
 
-
-
-      })
-
-
+          this.$message.success(msg);
 
         }
     }

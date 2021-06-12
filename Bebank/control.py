@@ -10,7 +10,7 @@ CORS(app)
 # 用户登录
 @app.route("/login", methods=["GET", "POST"])
 def checkLogin():
-    cd= ClientDao()
+    cd = ClientDao()
     data = json.loads(request.form.get('data'))
     username = data['username']
     password = data['password']
@@ -58,6 +58,20 @@ def getdata():
         return "ID has been used"
     if flag == 1:
         return "insert success"
+#adminifo
+@app.route("/admininfo", methods=["GET", "POST"])
+def pushdata():
+    cd = StaffDao()
+    data = json.loads(request.form.get('data'))
+    user_id = data['staffID']
+    diccd = cd.findstaffByID(theId=user_id)
+    # print(user_id)
+    if diccd == None :
+     return "refuse"
+    else:
+     return diccd
+
+
 
 if __name__ == '__main__':
    app.run(host="localhost",port=9529)

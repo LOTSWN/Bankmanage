@@ -19,7 +19,7 @@ class StaffDao(object):
 
     def __lisTodic(self, list):  # 列表转字典
         title = []
-        title = ["staffID", "staffname", "workband", "password", "age", "gender", "level"]
+        title = ["staffID", "staffname", "workbank", "password", "age", "gender", "level"]
         nowStaff = {}
         for i in range(len(list)):
             if str(list[i].__class__) == '<class \'bytes\'>':

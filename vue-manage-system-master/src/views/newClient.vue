@@ -52,7 +52,6 @@
 
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">表单提交</el-button>
-                        <el-button>取消</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -150,21 +149,21 @@ export default {
           dataType: 'text',
           success: function(res) {
             console.log(res)
-            if (res == "insert success"){
-              msg == '提交成功'
+            if (res == 'insert success'){
+              msg = '提交成功'
             }
-            else if(res == "insert error"){
-              msg == '提交失败'
+            else if(res == 'insert error'){
+              msg = '提交失败'
             }
-            else if(res == "ID has been used")
-              msg == 'ID 已被占用'
+            else if(res == 'ID has been used')
+              msg = 'ID 已被占用'
            },
           error: function() {
             msg = 'something wrong'
           }
           })
 
-          this.$message.success(msg);
+          this.$message(msg);
 
         }
     }

@@ -3,7 +3,7 @@
   <el-main class="mybox boxleft"> 
 <div class="box-card" style="width:200px">
   <div name="header" class="clearfix">
-    <span>管理员：lotswn</span>
+    <span>您好！<div class="text item"> {{staffname}} </div></span>
     <br><br><hr><br><br>
   </div> 
   <div class="text item"> 账号ID：{{staffID}} </div>
@@ -26,7 +26,7 @@
                             ></el-date-picker> -->
       
       </el-header>
-    <el-main class="mybox boxright">Main</el-main>
+    <el-main class="mybox boxright">待添加内容</el-main>
   </el-container>
 </el-container>
 
@@ -42,25 +42,46 @@ export default {
         'staffID': localStorage.getItem("user_id"),
         })
       }
+      var res_msg
+      var isAdmin
       $.ajax({
           url: 'http://127.0.0.1:9529/admininfo',
           type: 'POST',
           data: data,
           async: false, //设置ajax为同步请求
-          dataType: 'text',
-           success: function(res) {   
-             console.log(res)        
+          dataType: 'JSON',
+           success: function(res) {
+             if(res == 'refuse'){
+               isAdmin = false
+             }else{
+               isAdmin = true
+               res_msg = res;//保存在本地
+             }
            }
       })
-      return {      
-        staffID: 1,
-      staffname: 1,
-         gender: 1,
-            age: 1,
-          level: 1,
-       workBank: 1,
+      if (isAdmin == true){
+        return {
+          staffID: res_msg['staffID'],
+          staffname: res_msg['staffname'],
+          gender: res_msg['gender'],
+          age: res_msg['age'],
+          level: res_msg['level'],
+          workBank: res_msg['workbank'],
           vdate:this.getNowFormatDate()
+        }
+      }else {
+        this.$message('您没有管理员权限');
+        return {
+          staffID: '您没有管理员权限',
+          staffname: '您没有管理员权限',
+          gender: '您没有管理员权限',
+          age: '您没有管理员权限',
+          level: '您没有管理员权限',
+          workBank: '您没有管理员权限',
+          vdate:this.getNowFormatDate()
+        }
       }
+
     },
     methods:{
       getNowFormatDate() {

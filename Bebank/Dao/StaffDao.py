@@ -6,7 +6,7 @@ class StaffDao(object):
         self.ac = connectionPool()
         (self.cur, self.con) = self.ac.getconn()  # con：连接；cur：连接的对象
 
-    def findstaffByID(self, theId):  # 根据ID查找单个客户
+    def findstaffByID(self, theId):  # 根据ID查找单个管理员
 
         sql = "SELECT * FROM `staff` WHERE `staffID` LIKE " + "'" + theId + "'"
         try:
@@ -19,7 +19,7 @@ class StaffDao(object):
 
     def __lisTodic(self, list):  # 列表转字典
         title = []
-        title = ["staffID", "staffname", "workband", "password", "age", "gender", "level"]
+        title = ["staffID", "staffname", "workBank", "password", "age", "gender", "level"]
         nowStaff = {}
         for i in range(len(list)):
             if str(list[i].__class__) == '<class \'bytes\'>':

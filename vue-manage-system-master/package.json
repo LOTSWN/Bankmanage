@@ -9,6 +9,7 @@
     },
     "dependencies": {
         "axios": "^0.21.1",
+        "bootstrap": "^5.0.1",
         "core-js": "~3.9.1",
         "element-plus": "1.0.2-beta.33",
         "jquery": "^3.6.0",

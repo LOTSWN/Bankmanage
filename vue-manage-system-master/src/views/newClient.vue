@@ -17,10 +17,10 @@
                     </el-form-item>
 
                     <el-form-item label="密码" prop="pass">
-                    <el-input type="password" v-model="form.pass" autocomplete="off"></el-input>
+                    <el-input type="password" v-model="form.pass" show-password></el-input>
                     </el-form-item>
                     <el-form-item label="确认密码" prop="checkPass">
-                    <el-input type="password" v-model="form.checkPass" autocomplete="off"></el-input>
+                    <el-input type="password" v-model="form.checkPass" show-password></el-input>
                     </el-form-item>
 
                     <el-form-item label="姓名">
@@ -52,7 +52,7 @@
 
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">表单提交</el-button>
-                        <el-button>取消</el-button>
+                        <el-button  @click="cleanall"> 重置</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import {ElMessage } from 'element-plus'
 import $ from 'jquery'
 export default {
     name: 'newclient',
@@ -126,6 +127,7 @@ export default {
      },
         onSubmit() {
           var data = {
+
             data: JSON.stringify({
                 "clientID": this.form.clientID,
                 "password": this.form.pass,
@@ -138,7 +140,8 @@ export default {
            })
           }
 
-
+          if(this.form.pass==this.form.checkPass)
+          {
           $.ajax({
           url: 'http://127.0.0.1:9529/newclient',
           type: 'POST',
@@ -146,20 +149,39 @@ export default {
           async: false, //设置ajax为同步请求
           dataType: 'text',
           success: function(res) {   
-            console.log(res)
-            this.$message.success('提交成功！');
+            // console.log(res)
+            if(res=="success")
+            {
+             ElMessage("注册成功！") 
+            }
+            else if(res=="failed")
+            {
+             ElMessage("用户名已注册！")
+            }  
            },
           error: function() {
-            this.$message.success('出现错误！');
+             ElMessage("注册失败！")
           }
-
-
-
       })
+          }
+          else
+          {
+             ElMessage("两次输入密码不一致！")
+          }          
+        },
+      cleanall() {
+          this.form.clientID=''
+          this.form.pass=''
+          this.form.checkPass=''
+          this.form.gender=''
+          this.form.name=''
+          this.form.openBank=''
+          this.form.telephone=''
+          this.form.age=''
+     }
 
-
-
-        }
     }
+
+
 };
 </script>

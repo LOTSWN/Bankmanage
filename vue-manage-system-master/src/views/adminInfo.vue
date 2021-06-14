@@ -3,11 +3,10 @@
   <el-main class="mybox boxleft"> 
 <div class="box-card" style="width:200px">
   <div name="header" class="clearfix">
-    <span>管理员：lotswn</span>
+    <span>管理员：{{staffname}}</span>
     <br><br><hr><br><br>
   </div> 
   <div class="text item"> 账号ID：{{staffID}} </div>
-  <div class="text item"> 姓名：{{staffname}} </div>
   <div class="text item"> 性别：{{gender}} </div>
   <div class="text item"> 年龄：{{age}} </div>
   <div class="text item"> 职务：{{level}} </div>
@@ -18,13 +17,7 @@
   <el-container>
     <el-header class="mybox boxtop" style="padding: 20px,5px,5px,5px;">
       <br>
-    当前时间：{{vdate}}
-                            <!-- <el-date-picker
-                                v-model="vdate"
-                                style="width: 100%;"
-                                type="date"
-                            ></el-date-picker> -->
-      
+      当前时间：{{vdate}}
       </el-header>
     <el-main class="mybox boxright">Main</el-main>
   </el-container>
@@ -42,23 +35,25 @@ export default {
         'staffID': localStorage.getItem("user_id"),
         })
       }
+      var res
       $.ajax({
-          url: 'http://127.0.0.1:9529/admininfo',
+          url: 'http://127.0.0.1:9529/fastaff',
           type: 'POST',
           data: data,
           async: false, //设置ajax为同步请求
           dataType: 'text',
-           success: function(res) {   
-             console.log(res)        
+           success: function(responses) {  
+             res = JSON.parse(responses);
+             console.log(res.workBank)        
            }
       })
       return {      
-        staffID: 1,
-      staffname: 1,
-         gender: 1,
-            age: 1,
-          level: 1,
-       workBank: 1,
+        staffID: res.staffID,
+      staffname: res.staffname,
+         gender: res.gender,
+            age: res.age,
+          level: res.level,
+       workBank: res.workBank,
           vdate:this.getNowFormatDate()
       }
     },

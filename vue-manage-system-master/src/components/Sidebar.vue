@@ -82,45 +82,30 @@ export default {
                 },
                 {
                     icon: "el-icon-lx-calendar",
-                    index: "3",
-                    title: "储蓄账户管理",
-                    subs: [
-                        {
-                            index: "form",
-                            title: "基本表单"
-                        },
-                        {
-                            index: "upload",
-                            title: "文件上传"
-                        }
-                    ]
+                    index: "savemanage",
+                    title: "储蓄账户管理"
                 },
                 {
                     icon: "el-icon-lx-emoji",
-                    index: "icon",
+                    index: "loannote",
                     title: "贷款申请"
                 },
                 {
                     icon: "el-icon-pie-chart",
-                    index: "charts",
+                    index: "fuser",
                     title: "用户信息查询"
                 },
-                // {
-                //     icon: "el-icon-lx-global",
-                //     index: "i18n",
-                //     title: "国际化功能"
-                // },
                 {
                     icon: "el-icon-lx-warn",
                     index: "7",
                     title: "用户账户查询",
                     subs: [
                         {
-                            index: "permission",
+                            index: "fuloan",
                             title: "贷款账户查询"
                         },
                         {
-                            index: "404",
+                            index: "fusave",
                             title: "储蓄账户查询"
                         }
                     ]

@@ -5,7 +5,7 @@ from Dao.SaveDao import SaveDao
 from Dao.StaffDao import StaffDao
 from Dao.LoanDao import LoanDao
 from flask_cors import CORS
-
+from Service.Hash import hash_passwd
 app = Flask(__name__)
 CORS(app)
 @app.route("/login", methods=["GET", "POST"])         #客户登陆验证
@@ -18,7 +18,7 @@ def checkLogin():
 
     if diccd == None:
         return "account lose"
-    if(diccd['password']==password) :
+    if(diccd['password']==hash_passwd(password)) :
         return "success"
     else :
         return "wrong password"
@@ -46,10 +46,11 @@ def checkSaveLogin():
     saveID = data['saveID']
     password = data['password']
     diccd=cd.findsaveByID(theId=saveID)
+    print(saveID)
 
     if diccd == None:
         return "account lose"
-    if(diccd['password']==password) :
+    if(diccd['password']==hash_passwd(password)) :
         return "success"
     else :
         return "wrong password"
@@ -80,6 +81,7 @@ def findsuser():
 @app.route("/findasave", methods=["GET", "POST"]) #根据ID查找储蓄账户
 def findasave():
     cd= SaveDao()
+
     data = json.loads(request.form.get('data'))
     keyword = data['saveID']
     responce=cd.findsaveByID(theId=keyword)

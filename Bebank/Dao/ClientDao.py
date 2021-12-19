@@ -1,5 +1,5 @@
 from Dao.connectionPool import connectionPool
-
+from Service.Hash import hash_passwd
 class ClientDao(object):
 
     def __init__(self):
@@ -24,8 +24,10 @@ class ClientDao(object):
         except:
             return "failed"
 
-    def newclient(self,data):     #创建客户
-        sql='INSERT INTO `client` (`clientID`, `password`, `gender`, `name`, `openTime`, `openBank`, `telephone`, `age`) VALUES (\'{t1}\', \'{t2}\', \'{t3}\', \'{t4}\', \'{t5}\', \'{t6}\', \'{t7}\', \'{t7}\');'.format(t1=data['clientID'],t2=data['password'],t3=data['gender'],t4=data['name'],t5=data['openTime'],t6=data['openBank'],t7=data['telephone'],t8=data['age'])                                                                    
+    def newclient(self,data):#创建客户
+        passwd = hash_passwd(data['password'])
+        # print(passwd)
+        sql='INSERT INTO `client` (`clientID`, `password`, `gender`, `name`, `openTime`, `openBank`, `telephone`, `age`) VALUES (\'{t1}\', \'{t2}\', \'{t3}\', \'{t4}\', \'{t5}\', \'{t6}\', \'{t7}\', \'{t7}\');'.format(t1=data['clientID'],t2=passwd,t3=data['gender'],t4=data['name'],t5=data['openTime'],t6=data['openBank'],t7=data['telephone'],t8=data['age'])
         try:
             self.cur.execute(sql)
             return "success"

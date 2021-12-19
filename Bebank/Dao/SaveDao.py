@@ -1,5 +1,5 @@
 from Dao.connectionPool import connectionPool
-
+from Service.Hash import hash_passwd
 
 class SaveDao(object):
     def __init__(self):
@@ -7,7 +7,7 @@ class SaveDao(object):
         (self.cur, self.con) = self.ac.getconn()  # con：连接；cur：连接的对象
 
     def findsaveByID(self, theId):  # 根据ID查找储蓄账号
-        sql = "SELECT * FROM `savenote` WHERE `saveID` LIKE " + "'" + str(theId) + "'"
+        sql = "SELECT * FROM `savenote` WHERE `saveID` LIKE " + "'" + str(theId) + "'" + ";"
         try:
             self.cur.execute(sql)
             list = self.cur.fetchall()
@@ -18,7 +18,9 @@ class SaveDao(object):
     
 
     def newsave(self,data):     #创建客户
-        sql='INSERT INTO `savenote` (`saveID`, `password`, `clientID`, `moneynum`, `savetype`, `begindate`, `overdate`, `rate`) VALUES ({t0},\'{t1}\', \'{t2}\', \'{t3}\', \'{t4}\', \'{t5}\', \'{t6}\', \'{t7}\');'.format(t0="NULL",t1=data['password'],t2=data['clientID'],t3=data['moneynum'],t4=data['savetype'],t5=data['begindate'],t6=data['overdate'],t7=data['rate'])
+        passwd = hash_passwd(data['password'])
+        # print(passwd)
+        sql='INSERT INTO `savenote` (`saveID`, `password`, `clientID`, `moneynum`, `savetype`, `begindate`, `overdate`, `rate`) VALUES ({t0},\'{t1}\', \'{t2}\', \'{t3}\', \'{t4}\', \'{t5}\', \'{t6}\', \'{t7}\');'.format(t0="NULL",t1=passwd,t2=data['clientID'],t3=data['moneynum'],t4=data['savetype'],t5=data['begindate'],t6=data['overdate'],t7=data['rate'])
         try:
             self.cur.execute(sql)
             return "success"
@@ -85,7 +87,4 @@ class SaveDao(object):
                 nowls[title[i]] = list[i]  # bytes外类型暂不处理
         # print(nowClient)
         return nowls
-
-
-
 

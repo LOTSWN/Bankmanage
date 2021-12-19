@@ -3,8 +3,8 @@ import pymysql
 DB_TEST_HOST = "127.0.0.1"
 DB_TEST_PORT = 3306
 DB_TEST_DBNAME = "bank"
-DB_TEST_USER = "epc"
-DB_TEST_PASSWORD = "123456"
+DB_TEST_USER = "root"
+DB_TEST_PASSWORD = "root"
 
 # 数据库连接编码
 DB_CHARSET = "utf8"

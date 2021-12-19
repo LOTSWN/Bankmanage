@@ -69,41 +69,34 @@ export default {
                     'password': this.param.password
                   })
                 }
-              var msg
-              $.ajax({
-                url: 'http://127.0.0.1:9529/login',
-                type: 'POST',
-                data: data,
-                async: false, //设置ajax为同步请求
-                dataType: 'text',
-                success: function(res) {
-                  if (res === 'success'){
-                    valid = true
-                    msg = '登陆成功'
+                $.ajax({
+                  url: 'http://127.0.0.1:9529/login',
+                  type: 'POST',
+                  data: data,
+                  async: false, //设置ajax为同步请求
+                  dataType: 'text',
+                  success: function(res) {
+                    if (res === 'find'){
+                        valid = true
+                    } 
+                    else {
+                        valid = false
+                    }
+                  },
+                  error: function() {
+                      valid = false
                   }
-                  else if (res === 'account lose' ){
-                    valid = false
-                    msg = '账号错误'
-                  }
-                  else if (res === 'wrong password' ){
-                    valid = false
-                    msg = '密码错误'
-                  }
-                },
-                error: function() {
-                  valid = false
-                }
-              })
+                })
 
-              if (valid) {
-                this.$message.success(msg);
-                localStorage.setItem("user_type", "admin");
-                localStorage.setItem("user_id", this.param.username);
-                this.$router.push("/admininfo");
-              } else {
-                this.$message.error(msg);
-                return false;
-              }
+                if (valid) {
+                    this.$message.success("登录成功");
+                    localStorage.setItem("user_type", "normal");
+                    localStorage.setItem("user_id", this.param.username);
+                    this.$router.push("/");
+                } else {
+                    this.$message.error("登陆错误");
+                    return false;
+                }
 
 
             });
